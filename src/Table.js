@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 // import { type } from "os";
+import "./css/Table.css";
 
 class Table extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class Table extends Component {
     // var keys = this.getKeys;
     console.log(this.props.data.length);
     return items.map((row, index) => {
-      if (this.props.data[index].id && this.props.data[index].id !== "SOLR1000")
+      if (this.props.data[index].id && row.value !== 0)
         return (
           <tr key={index}>
             <td key={row.id}>{row.id}</td>

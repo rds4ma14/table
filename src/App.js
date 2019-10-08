@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import logo from "./jabuti.png";
 import "./css/App.css";
 import Table from "./Table";
+import logo from "./jabuti.png";
 
 class App extends Component {
   constructor(props) {
@@ -10,25 +10,7 @@ class App extends Component {
       name: "",
       greeting: "",
       search: "",
-      result: [
-        {
-          id: "978-18579958791",
-          name: "Result Sophie's World : The Greek Philosophers",
-          value: 3.07
-        },
-        {
-          id: "978-18579958792",
-          name: "Result2 Sophie's World : The Greek Philosophers",
-          value: 3.07
-        }
-      ],
-      data: [
-        {
-          id: "978-1857995879",
-          name: "Sophie's World : The Greek Philosophers",
-          value: 3.07
-        }
-      ]
+      result: [{}]
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeSearch = this.handleChangeSearch.bind(this);
@@ -71,9 +53,6 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          {/* <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p> */}
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="name">Enter column name: </label>
             <input
