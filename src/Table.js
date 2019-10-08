@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import { type } from "os";
 
 class Table extends Component {
   constructor(props) {
@@ -21,13 +22,17 @@ class Table extends Component {
 
   getRowsData = function() {
     var items = this.props.data;
-    var keys = this.getKeys;
+    // var keys = this.getKeys;
+    console.log(this.props.data.length);
     return items.map((row, index) => {
-      return (
-        <tr key={index}>
-          <RenderRow key={index} data={row} keys={keys} />
-        </tr>
-      );
+      if (this.props.data[index].id && this.props.data[index].id !== "SOLR1000")
+        return (
+          <tr key={index}>
+            <td key={row.id}>{row.id}</td>
+            <td key={row.name}>{row.name}</td>
+            <td key={row.value}>{row.value}</td>
+          </tr>
+        );
     });
   };
 
@@ -44,9 +49,16 @@ class Table extends Component {
     );
   }
 }
+
+export default Table;
+
+/*
 const RenderRow = props => {
-  return props.keys.map((key, index) => {
-    return <td key={props.data[key]}>{props.data[key]}</td>;
+  console.log("bonitono", props.data);
+  return props.data.map((key, index) => {
+    return <td key={props.data[index].id}>{props.data[index].name}</td>;
   });
 };
-export default Table;
+ <RenderRow key={index} data={this.props.data} keys={keys} />
+          <RenderRow key={index} data={this.props.data} key={keys} />
+          <RenderRow key={index} data={this.props.data} keys={keys} /> */

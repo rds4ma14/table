@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "./jabuti.jpg";
+import logo from "./jabuti.png";
 import "./css/App.css";
 import Table from "./Table";
 
@@ -11,6 +11,18 @@ class App extends Component {
       greeting: "",
       search: "",
       result: [
+        {
+          id: "978-18579958791",
+          name: "Result Sophie's World : The Greek Philosophers",
+          value: 3.07
+        },
+        {
+          id: "978-18579958792",
+          name: "Result2 Sophie's World : The Greek Philosophers",
+          value: 3.07
+        }
+      ],
+      data: [
         {
           id: "978-1857995879",
           name: "Sophie's World : The Greek Philosophers",
@@ -43,14 +55,14 @@ class App extends Component {
     )
       .then(response => response.json())
       .then(state => {
-        this.setState({ result: state });
-        console.log("testinho", this.state);
+        this.setState(state);
+        // console.log("testinho", this.state);
       });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.result !== this.props.result) {
-      this.setState({ result: this.props.result });
+      this.setState({ result: this.state.result });
     }
   }
 
@@ -91,27 +103,8 @@ class App extends Component {
             Conheça Samaia IT
           </a>
         </header>
-        {/* <div>
-          <table className="pure-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.result.map(function(autor) {
-                return (
-                  <tr key={autor.id}>
-                    <td>{autor.nome}</td>
-                    <td>{autor.email}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div> */}
-        <Table data={this.state.result} />
+
+        <Table data={this.state.result} onChange={this.handleChangeResult} />
       </div>
     );
   }
