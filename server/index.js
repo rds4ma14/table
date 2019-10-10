@@ -17,13 +17,13 @@ app.get("/api/solr", async (req, res) => {
   const SolrConnect = require("./SolrPlugin");
   const SolrClient = SolrConnect.SolrPlugin();
 
-  const name = req.query.name || "*";
+  const name = req.query.name || "texto";
   const search = req.query.search || "*";
 
   const Solr = require("./../src/Solr");
   const resultQuery = await Solr.execute(name, search, SolrClient);
 
-  console.log(resultQuery);
+  // console.log("last", resultQuery);
 
   res.send({ result: resultQuery });
   // res.send(`<script>alert('test')</script>`);

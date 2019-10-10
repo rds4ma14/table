@@ -54,14 +54,14 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <form onSubmit={this.handleSubmit}>
-            <label htmlFor="name">Enter column name: </label>
+            {/* <label htmlFor="name">Enter column name: </label>
             <input
               id="name"
               type="text"
               value={this.state.name}
               onChange={this.handleChange}
             />
-            <br />
+            <br /> */}
             <label htmlFor="search">Enter column value: </label>
             <input
               id="search"

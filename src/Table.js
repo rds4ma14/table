@@ -17,6 +17,7 @@ class Table extends Component {
   getHeader = function() {
     var keys = this.getKeys();
     return keys.map((key, index) => {
+      if (key === "link") return null;
       return <th key={key}>{key.toUpperCase()}</th>;
     });
   };
@@ -26,12 +27,17 @@ class Table extends Component {
     // var keys = this.getKeys;
     console.log(this.props.data.length);
     return items.map((row, index) => {
-      if (this.props.data[index].id && row.value !== 0)
+      if (this.props.data[index].id_solr)
         return (
           <tr key={index}>
-            <td key={row.id}>{row.id}</td>
-            <td key={row.name}>{row.name}</td>
-            <td key={row.value}>{row.value}</td>
+            <td key={row.id_solr}>{row.id_solr}</td>
+            <td key={row.governo}>{row.governo}</td>
+            <td key={row.id_legislacao}>
+              <a href={row.link} target="blank">
+                {row.id_legislacao}
+              </a>
+            </td>
+            <td key={row.data}>{row.data}</td>
           </tr>
         );
     });
