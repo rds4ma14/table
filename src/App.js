@@ -86,7 +86,6 @@ class App extends Component {
           data={this.state.result}
           onChange={this.handleChangeResult}
         />
-        /> */}
       </div>
     );
   }
