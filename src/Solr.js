@@ -4,7 +4,7 @@
 function execute(param1, param2, client) {
   // cat%3A*&rows=50&sort=price%desc&wt=json
   // fq=price%3A%5B4%20TO%2010%5D&q=.... price:[4 TO 10]
-  const consulta = `q=${param1}%3A${param2}&rows=100&sort=data%20desc&wt=json`;
+  const consulta = `q=${param1}%3A${param2}&rows=100000&sort=data%20desc&wt=json`;
   console.log(consulta);
   return client
     .search(consulta)

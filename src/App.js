@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import "./css/App.css";
-// import Table from "./Table";
-// import TableBoot from "./TableBoot";
-// import Tableui from "./Table-ui";
 import TableTest from "./TableTest";
 import logo from "./jabuti.png";
 
@@ -85,15 +82,10 @@ class App extends Component {
             Conheça Samaia IT
           </a>
         </header>
-
-        {/* <Table data={this.state.result} onChange={this.handleChangeResult} /> */}
         <TableTest
           data={this.state.result}
           onChange={this.handleChangeResult}
         />
-        {/* <TableBoot
-          data={this.state.result}
-          onChange={this.handleChangeResult}
         /> */}
       </div>
     );
