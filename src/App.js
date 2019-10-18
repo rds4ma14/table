@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./css/App.css";
-import TableTest from "./TableTest";
 import logo from "./jabuti.png";
+import TableMUI from "./TableMUI";
+// import TablePagination from "./TablePagination";
 
 class App extends Component {
   constructor(props) {
@@ -82,10 +83,8 @@ class App extends Component {
             Conheça Samaia IT
           </a>
         </header>
-        <TableTest
-          data={this.state.result}
-          onChange={this.handleChangeResult}
-        />
+        <TableMUI data={this.state.result} onChange={this.handleChangeResult} />
+        {/* <TablePagination /> */}
       </div>
     );
   }
