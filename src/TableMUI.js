@@ -7,10 +7,18 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import React, { Component } from "react";
+// pagination "nova"
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+import FirstPageIcon from "@material-ui/icons/FirstPage";
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import LastPageIcon from "@material-ui/icons/LastPage";
+
 // import { type } from "os";
 import "./css/Table.css";
 
-class TableTest extends Component {
+class TableMUI extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -101,6 +109,7 @@ class TableTest extends Component {
             nextIconButtonProps={{
               "aria-label": "next page"
             }}
+            // ActionsComponent={"TablePaginationActions"}
           />
         </div>
       </Paper>
@@ -108,25 +117,4 @@ class TableTest extends Component {
   }
 }
 
-export default TableTest;
-
-// getRowsData = function() {
-//   var items = this.props.data;
-//   // var keys = this.getKeys;
-//   // console.log(this.props.data.length);
-//   return items.map((row, index) => {
-//     if (this.props.data[index].id_solr)
-//       return (
-//         <TableRow key={index}>
-//           <TableCell key={row.id_solr}>{row.id_solr}</TableCell>
-//           <TableCell key={row.governo}>{row.governo}</TableCell>
-//           <TableCell key={row.id_legislacao}>
-//             <a href={row.link} target="blank">
-//               {row.id_legislacao}
-//             </a>
-//           </TableCell>
-//           <TableCell key={row.data}>{row.data}</TableCell>
-//         </TableRow>
-//       );
-//   });
-// };
+export default TableMUI;
