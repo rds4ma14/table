@@ -1,0 +1,53 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["airbnb"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "eslint-plugin-import",
+    "eslint-plugin-jsx-a11y"
+  ],
+  "rules": {
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "no-use-before-define": "off",
+    "no-unused-vars": 1,
+    "no-console": "off",
+    "max-len": "off",
+    "import/no-cycle": "off",
+    "no-tabs": "off",
+    "global-require": "off",
+    "import/no-dynamic-require": "off",
+    "class-methods-use-this": "off",
+    "no-underscore-dangle": "off",
+    "no-unused-expressions": 0,
+    "indent": ["error", 2],
+    "react/sort-comp": "off",
+    "semi": 1,
+    "react/destructuring-assignment": [1,"never"],
+    "react/prop-types":[1],
+    "react/no-did-update-set-state":0,
+    "react/no-access-state-in-setstate":0,
+    "jsx-a11y/label-has-associated-control":1,
+    "no-shadow": 1,
+    "no-multiple-empty-lines":0
+  }
+}
