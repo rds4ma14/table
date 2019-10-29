@@ -4,7 +4,6 @@ import MUIDataTable from 'mui-datatables';
 // import TableTest from './TableTest';
 import logo from './jabuti.png';
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -125,7 +124,6 @@ class App extends Component {
             Conheça Samaia IT
           </a>
         </header>
-<<<<<<< HEAD
         {/* <TableTest
           data={this.state.result}
           onChange={this.handleChangeResult}
@@ -136,10 +134,6 @@ class App extends Component {
           columns={this.columns}
           options={this.options}
         />
-=======
-        <TableMUI data={this.state.result} onChange={this.handleChangeResult} />
-        {/* <TablePagination /> */}
->>>>>>> b04ced2b515b4831242494e8f2f29440c542a7cd
       </div>
     );
   }
