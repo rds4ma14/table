@@ -53,6 +53,14 @@ class App extends Component {
 
   columns = [
     {
+      name: 'id_legislacao',
+      label: 'ID Legislação',
+      options: {
+        filter: false,
+        sort: false,
+      },
+    },
+    {
       name: 'governo',
       label: 'Governo',
       options: {
@@ -82,6 +90,11 @@ class App extends Component {
       options: {
         filter: false,
         sort: false,
+        customBodyRender: (value, tableMeta) => (
+          <a href={value} target="blank">
+            {tableMeta.rowData[0]}
+          </a>
+        ),
       },
     },
   ]

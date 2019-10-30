@@ -1,22 +1,22 @@
 // import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
-import TableRow from "@material-ui/core/TableRow";
-import React, { Component } from "react";
-// pagination "nova"
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import IconButton from "@material-ui/core/IconButton";
-import FirstPageIcon from "@material-ui/icons/FirstPage";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import LastPageIcon from "@material-ui/icons/LastPage";
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
+import React, { Component } from 'react';
+// pagination 'nova'
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import FirstPageIcon from '@material-ui/icons/FirstPage';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import LastPageIcon from '@material-ui/icons/LastPage';
 
 // import { type } from "os";
-import "./css/Table.css";
+import '../css/Table.css';
 
 class TableMUI extends Component {
   constructor(props) {
@@ -36,11 +36,12 @@ class TableMUI extends Component {
     this.setState({ rowsPerPage: +event.target.value });
     this.setState({ page: 0 });
   };
+
   handleChangePage = (event, newPage) => {
     this.setState({ page: newPage });
   };
 
-  getKeys = function() {
+  getKeys = function () {
     return Object.keys(this.props.data[0]);
   };
 
@@ -71,6 +72,7 @@ class TableMUI extends Component {
         console.log("object", row, index);
         if (this.props.data[index].id_solr)
           return (
+            
             <TableRow hover role="checkbox" tabIndex={-1} key={index}>
               {/* <TableRow key={index}> */}
               <TableCell key={row.id_solr}>{row.id_solr}</TableCell>
