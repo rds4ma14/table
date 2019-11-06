@@ -30,6 +30,7 @@ class TableMUI extends Component {
     this.getKeys = this.getKeys.bind(this);
     this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
     this.handleChangePage = this.handleChangePage.bind(this);
+    this.TablePaginationActions = this.TablePaginationActions.bind(this);
   }
 
   handleChangeRowsPerPage = event => {
@@ -60,7 +61,7 @@ class TableMUI extends Component {
     var items = this.props.data;
     // var keys = this.getKeys;
     // console.log(this.props.data.length);
-    console.log(this.state.page);
+    // console.log(this.state.page);
 
     return items
       .slice(
@@ -68,7 +69,7 @@ class TableMUI extends Component {
         this.state.page * this.state.rowsPerPage + this.state.rowsPerPage
       )
       .map((row, index) => {
-        console.log("object", row, index);
+        // console.log("object", row, index);
         if (this.props.data[index].id_solr)
           return (
             <TableRow hover role="checkbox" tabIndex={-1} key={index}>
@@ -96,6 +97,7 @@ class TableMUI extends Component {
             </TableHead>
             <TableBody>{this.getRowsData()}</TableBody>
           </Table>
+
           <TablePagination
             component="div"
             count={this.props.data.length}
@@ -109,12 +111,87 @@ class TableMUI extends Component {
             nextIconButtonProps={{
               "aria-label": "next page"
             }}
-            // ActionsComponent={"TablePaginationActions"}
-          />
+            lastPageButton={{ "aria-label": "last page" }}
+          ></TablePagination>
+          {/* <this.TablePaginationActions /> */}
         </div>
       </Paper>
     );
   }
+
+  /*********************Acao de pagination************************************************************/
+  TablePaginationActions = function() {
+    // const classes = useStyles1();
+    const theme = useTheme();
+    // const { onChangePage } = this.handleChangePage;
+    const rowsPerPage = this.state.rowsPerPage;
+    const page = this.state.page;
+    const count = this.props.data.length;
+
+    const handleFirstPageButtonClick = event => {
+      this.setState({ page: 0 });
+      console.log("how  ", page);
+    };
+
+    const handleBackButtonClick = event => {
+      this.setState({ page: page + 1 });
+      // onChangePage(event, page - 1);
+    };
+
+    const handleNextButtonClick = event => {
+      this.setState({ page: page + 1 });
+      console.log("oi", page);
+
+      // onChangePage(event, page + 1);
+    };
+
+    const handleLastPageButtonClick = event => {
+      this.setState({ page: Math.max(0, Math.ceil(count / rowsPerPage) - 1) });
+      console.log("oi", this.state.page);
+      // onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+    };
+
+    return (
+      <div>
+        <IconButton
+          onClick={handleFirstPageButtonClick}
+          disabled={page === 0}
+          aria-label="first page"
+        >
+          {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
+        </IconButton>
+        {/* <IconButton
+          onClick={handleBackButtonClick}
+          disabled={page === 0}
+          aria-label="previous page"
+        >
+          {theme.direction === "rtl" ? (
+            <KeyboardArrowRight />
+          ) : (
+            <KeyboardArrowLeft />
+          )}
+        </IconButton>
+        <IconButton
+          onClick={handleNextButtonClick}
+          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+          aria-label="next page"
+        >
+          {theme.direction === "rtl" ? (
+            <KeyboardArrowLeft />
+          ) : (
+            <KeyboardArrowRight />
+          )}
+        </IconButton> */}
+        <IconButton
+          onClick={handleLastPageButtonClick}
+          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+          aria-label="last page"
+        >
+          {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
+        </IconButton>
+      </div>
+    );
+  };
 }
 
 export default TableMUI;

@@ -4,6 +4,7 @@
 
 .App-logo {
   height: 40vmin;
+  float: left;
 }
 
 .App-header {
@@ -19,4 +20,17 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+.Label {
+  padding: 2% 0;
+  margin: auto;
+}
+
+.Table {
+  margin: auto;
+  height: 100%;
+}
+.Button {
+  margin: 10px 10px 0px 10px; /*top, right bottom, left*/
 }

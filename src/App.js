@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import "./css/App.css";
 import logo from "./jabuti.png";
-import TableMUI from "./TableMUI";
+// import TableMUI from "./TableMUI";
+// import CustomPaginationActionsTable from "./utils/CustomPaginationActionsTable";
 // import TablePagination from "./TablePagination";
+import MUIDataTable from "mui-datatables";
 
 class App extends Component {
   constructor(props) {
@@ -11,7 +13,14 @@ class App extends Component {
       name: "",
       greeting: "",
       search: "",
-      result: [{}]
+      result: [
+        {
+          governo: "Sem resultados..",
+          highlight: "Sem resultados..",
+          data: "Sem resultados..",
+          id_legislacao: "Sem Resultados.."
+        }
+      ]
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeSearch = this.handleChangeSearch.bind(this);
@@ -48,45 +57,111 @@ class App extends Component {
       this.setState({ result: this.state.result });
     }
   }
+  columns = [
+    {
+      name: "link",
+      label: "Texto da Lei",
+      options: {
+        filterList: 0,
+        filter: false,
+        sort: false,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          // console.log(tableMeta);
+          const index = tableMeta.rowIndex;
+          return <a href={value}>{this.state.result[index].id_legislacao}</a>;
+        }
+      }
+    },
+    {
+      name: "governo",
+      label: "Governo",
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: "highlight",
+      label: "Destaques",
+      options: {
+        filter: false,
+        sort: false
+      }
+    },
+    {
+      name: "data",
+      label: "Data",
+      options: {
+        filter: false,
+        sort: true
+      }
+    }
+  ];
 
+  options = {
+    filterType: "checkbox",
+    responsive: "stacked",
+    sort: true,
+    filterCount: 0
+  };
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        <header className="">
           <img src={logo} className="App-logo" alt="logo" />
-          <form onSubmit={this.handleSubmit}>
-            {/* <label htmlFor="name">Enter column name: </label>
-            <input
-              id="name"
-              type="text"
-              value={this.state.name}
-              onChange={this.handleChange}
-            />
-            <br /> */}
-            <label htmlFor="search">Enter column value: </label>
+          <form onSubmit={this.handleSubmit} className="Label">
+            <label htmlFor="search">
+              Digite o termo a ser procurado no texto de lei(e.g. armas):{" "}
+            </label>
+            <br />
             <input
               id="search"
               type="text"
               value={this.state.search}
               onChange={this.handleChangeSearch}
             />
-            <br />
-            <button type="submit">Submit</button>
+
+            <button type="submit" className="Button">
+              Pesquisa Jabuti
+            </button>
           </form>
           <p>{this.state.greeting}</p>
-          <a
-            className="App-link"
-            href="https://samaiait.com.br"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Conheça Samaia IT
-          </a>
         </header>
-        <TableMUI data={this.state.result} onChange={this.handleChangeResult} />
-        {/* <TablePagination /> */}
+
+        
+        <MUIDataTable
+          title={"Lista de Leis"}
+          data={this.state.result}
+          onChange={this.handleChangeResult}
+          columns={this.columns}
+          options={this.options}
+          className="Table"
+        />
       </div>
     );
   }
 }
 export default App;
+
+// {/* <label htmlFor="name">Enter column name: </label>
+//           <input
+//             id="name"
+//             type="text"
+//             value={this.state.name}
+//             onChange={this.handleChange}
+//           />
+//           <br /> */}
+
+/**********************************************************************/
+// {/* <a
+// className="App-link"
+// href="https://samaiait.com.br"
+// target="_blank"
+// rel="noopener noreferrer"
+// >
+// Conheça Samaia IT
+// </a> */}
+
+/******************************************************************/
+// {/* <TableMUI data={this.state.result} onChange={this.handleChangeResult} /> */}
+// {/* <CustomPaginationActionsTable /> */}
