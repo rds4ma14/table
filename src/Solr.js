@@ -26,13 +26,15 @@ function execute(name, search, rowStart, rows) {
         let data_br = data[0].split("-");
         data_br = `${data_br[2]}-${data_br[1]}-${data_br[0]}`;
 
-        let high;
+        let high = null;
         if (test[index].texto) {
           high = test[index].texto[0].replace(/<em>/g, "");
           high = high.replace(/<\/em>/g, "");
           high = "..." + high + "...";
           // console.log("hehe", high);
           console.log("oi", index, typeof test[index]);
+        } else {
+          high = "...Sem Resultados...";
         }
 
         if (!result.governo) {
