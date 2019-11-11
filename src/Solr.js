@@ -1,7 +1,11 @@
 const axios = require("axios");
+const fs = require("fs");
+// import formating from "./formatingJson";
+const formatingJson = require("./../src/formatingJson");
 
 function execute(name, search, rowStart, rows) {
-  let consulta = `http://localhost:8983/solr/my-core/select?hl.fl=${name}&hl=on&q=${name}%3A${search}&rows=${rows}&wt=json`;
+  let consulta = `http://localhost:8983/solr/my-core/select?facet.field=governo_str&facet=on&hl.fl=${name}&hl=on&q=${name}%3A${search}&rows=${rows}&wt=json`;
+  // select?facet.field=governo_str&facet=on&hl.fl=texto&hl=on&q=texto%3Aarmas&wt=json
   console.log(consulta);
 
   return axios({
@@ -12,13 +16,33 @@ function execute(name, search, rowStart, rows) {
     }
   })
     .then(results => {
-      return results.data;
+      return results;
     })
     .then(results => {
-      let test = Object.values(results.highlighting);
-      console.log("oi", results.response.docs.length);
+      let teste = results.data.facet_counts.facet_fields.governo_str;
+      let dataChart = { subvalues: [] };
+      for (let index = 0; index < teste.length; index += 2) {
+        console.log(teste[index], teste[index + 1]);
+        dataChart.subvalues.push({
+          name: teste[index],
+          value: teste[index + 1]
+        });
+      }
 
-      let data = results.response.docs.map((result, index) => {
+      fs.writeFile(
+        "./src/resultado.json",
+        JSON.stringify(dataChart, null, 4),
+        function(err) {
+          console.log("JSON escrito com sucesso!");
+        }
+      );
+      return results;
+    })
+    .then(results => {
+      let test = Object.values(results.data.highlighting);
+      // console.log("oi", results);
+
+      let data = results.data.response.docs.map((result, index) => {
         // console.log("sextou", test[index].texto);
 
         const id_legislacao = result.id_legislacao[0].split(".");
@@ -32,7 +56,7 @@ function execute(name, search, rowStart, rows) {
           high = high.replace(/<\/em>/g, "");
           high = "..." + high + "...";
           // console.log("hehe", high);
-          console.log("oi", index, typeof test[index]);
+          // console.log("oi", index, typeof test[index]);
         } else {
           high = "...Sem Resultados...";
         }
@@ -56,6 +80,10 @@ function execute(name, search, rowStart, rows) {
         };
       });
       // console.log("entao acao penal", data);
+
+      /************************/
+      // console.log(results.data);
+
       return data;
     })
     .catch(error => {

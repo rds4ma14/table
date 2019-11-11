@@ -18,6 +18,8 @@ app.get("/api/solr", async (req, res) => {
   res.send({ result: resultQuery });
 });
 
+app.get("/algo", async (req, res) => {});
+
 app.listen(3001, () =>
   console.log("Express server is running on localhost:3001")
 );

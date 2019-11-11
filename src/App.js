@@ -5,6 +5,8 @@ import logo from "./jabuti.png";
 // import CustomPaginationActionsTable from "./utils/CustomPaginationActionsTable";
 // import TablePagination from "./TablePagination";
 import MUIDataTable from "mui-datatables";
+import PieCharts from "./PieCharts";
+// import ZoomCharts from "./ZoomCharts";
 
 class App extends Component {
   constructor(props) {
@@ -125,10 +127,8 @@ class App extends Component {
               Pesquisa Jabuti
             </button>
           </form>
-          <p>{this.state.greeting}</p>
         </header>
 
-        
         <MUIDataTable
           title={"Lista de Leis"}
           data={this.state.result}
@@ -137,6 +137,10 @@ class App extends Component {
           options={this.options}
           className="Table"
         />
+
+        {/* <ZoomCharts /> */}
+
+        <PieCharts />
       </div>
     );
   }
